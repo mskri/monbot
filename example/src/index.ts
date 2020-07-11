@@ -1,4 +1,5 @@
 import { Monbot } from 'monbot';
 import { BOT_AUTH_TOKEN } from './constants/env';
+import { commands } from './commands';
 
-Monbot({ authToken: BOT_AUTH_TOKEN });
+Monbot(BOT_AUTH_TOKEN, { commands });

@@ -1,4 +1,5 @@
-import { Client } from 'discord.js';
+import { Client, Message } from 'discord.js';
+import { BotConfig } from './bot';
 
 export const onReady = async (client: Client) => {
   if (!client.user) {
@@ -14,4 +15,27 @@ export const onError = (error: Error) => {
   console.error(`Unexpected error happened: ${error.message}`);
 };
 
+export const onMessage = async (
+  bot: BotConfig,
+  client: Client,
+  message: Message
+) => {
+  // Ignore bots
+  if (message.author.bot) {
+    return;
+  }
+
+  // Only allow channel messages for now
+  if (message.channel.type !== 'text') {
+    return;
+  }
+
+  const command = bot.commands.find((command) =>
+    command.trigger.test(message.content)
+  );
+
+  if (command) {
+    command.run(message);
+    return;
+  }
 };
