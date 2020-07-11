@@ -9,6 +9,7 @@
   ],
   "types": "lib/index.d.ts",
   "scripts": {
+    "dev": "npm run watch",
     "build": "rollup -c",
     "watch": "rollup -cw",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
