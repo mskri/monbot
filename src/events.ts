@@ -45,6 +45,15 @@ export const onMessage = async ({
   const { requiredRoles } = command;
   const { author, member } = message;
 
+  const authorIsNotAdmin = !botConfig.admins.includes(author.id);
+
+  if (command.adminOnly && authorIsNotAdmin) {
+    logger.debug(
+      `${author.tag} tried to run admin only command '${command.name}'`
+    );
+    return;
+  }
+
   const authorDoesNotHaveRequiredRole: boolean = requiredRoles
     ? !requiredRoles.every(
         (role) => member?.roles.cache.get(role) !== undefined

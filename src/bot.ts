@@ -1,8 +1,9 @@
-import { Client, Message } from 'discord.js';
+import { Client, Message, Snowflake } from 'discord.js';
 import { onReady, onError, onMessage } from './events';
 import { Command } from './command';
 
 export type BotConfig = {
+  admins: Snowflake[];
   commands: Command[];
 };
 

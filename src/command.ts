@@ -5,6 +5,7 @@ export type Command = {
   trigger: RegExp;
   run: (message: Message) => void;
   requiredRoles?: Snowflake[];
+  adminOnly?: boolean;
 };
 
 export const createCommand = (command: Command): Command => {
