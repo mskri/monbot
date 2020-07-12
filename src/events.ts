@@ -1,5 +1,6 @@
 import { Client, Message } from 'discord.js';
 import { BotConfig } from './bot';
+import { logger } from './logger';
 
 export const onReady = async (client: Client) => {
   if (!client.user) {
@@ -7,8 +8,7 @@ export const onReady = async (client: Client) => {
   }
 
   const { username: botUsername, id: botId } = client.user;
-  console.log(`Logged in as ${botUsername} (${botId})`);
-  console.log(`Reporting for duty!`);
+  logger.info(`Logged in as ${botUsername} (${botId})`);
 };
 
 export const onError = (error: Error) => {
