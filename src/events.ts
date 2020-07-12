@@ -46,6 +46,13 @@ export const onMessage = async ({
   const { requiredRoles, channels: allowedChannels, guilds: allowedGuilds } = command;
   const { author, channel, guild, member } = message;
 
+  const authorIsNotAdmin = !botConfig.admins.includes(author.id);
+
+  if (command.adminOnly && authorIsNotAdmin) {
+    logger.debug(`${author.tag} tried to run admin only command '${command.name}'`);
+    return;
+  }
+
   // TODO: requires changes if dms are allowed to trigger commands
   const triggeredInDisallowedGuild = allowedGuilds
     ? !allowedGuilds.some((id) => id === guild?.id)
@@ -66,13 +73,6 @@ export const onMessage = async ({
     logger.debug(
       `${author.tag} tried to run command '${command.name}' in a channel '#${channel.name}' which the command is not configured to be run in`
     );
-    return;
-  }
-
-  const authorIsNotAdmin = !botConfig.admins.includes(author.id);
-
-  if (command.adminOnly && authorIsNotAdmin) {
-    logger.debug(`${author.tag} tried to run admin only command '${command.name}'`);
     return;
   }
 
