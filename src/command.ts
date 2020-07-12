@@ -6,6 +6,7 @@ export type Command = {
   run: (message: Message) => void;
   requiredRoles?: Snowflake[];
   adminOnly?: boolean;
+  channels?: string[];
 };
 
 export const createCommand = (command: Command): Command => {

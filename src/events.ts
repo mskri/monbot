@@ -43,7 +43,18 @@ export const onMessage = async ({
   }
 
   const { requiredRoles } = command;
-  const { author, member } = message;
+  const { author, channel, member } = message;
+
+  const triggeredInDisallowedChannel = allowedChannels
+    ? !allowedChannels.some((name) => name === channel.name)
+    : false;
+
+  if (triggeredInDisallowedChannel) {
+    logger.debug(
+      `${author.tag} tried to run command '${command.name}' in a channel '#${channel.name}' which the command is not configured to be run in`
+    );
+    return;
+  }
 
   const authorIsNotAdmin = !botConfig.admins.includes(author.id);
 
