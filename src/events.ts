@@ -38,11 +38,27 @@ export const onMessage = async ({
     command.trigger.test(message.content)
   );
 
-  if (command) {
-    logger.debug(
-      `Command '${command.name}' was triggered by ${message.author.tag}`
-    );
-    command.run(message);
+  if (!command) {
     return;
   }
+
+  const { requiredRoles } = command;
+  const { author, member } = message;
+
+  const authorDoesNotHaveRequiredRole: boolean = requiredRoles
+    ? !requiredRoles.every(
+        (role) => member?.roles.cache.get(role) !== undefined
+      )
+    : false;
+
+  if (authorDoesNotHaveRequiredRole) {
+    logger.debug(
+      `${author.tag} does not have required roles to run command '${command.name}'`
+    );
+    return;
+  }
+
+  logger.debug(`Command '${command.name}' was triggered by ${author.tag}`);
+
+  command.run(message);
 };
