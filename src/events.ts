@@ -8,7 +8,10 @@ export const onReady = async (client: Client) => {
   }
 
   const { username: botUsername, id: botId } = client.user;
+  const guilds = client.guilds.cache.map((guild) => guild.name);
+
   logger.info(`Logged in as ${botUsername} (${botId})`);
+  logger.info(`Active in following guilds: ${guilds.join(', ')}`);
 };
 
 export const onError = (error: Error) => {
