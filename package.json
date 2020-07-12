@@ -12,7 +12,8 @@
     "dev": "npm run watch",
     "build": "rollup -c",
     "watch": "rollup -cw",
-    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+    "format": "prettier --ignore-path .gitignore --write './**/*.{ts,js,json,css}'"
   },
   "keywords": [],
   "author": {
