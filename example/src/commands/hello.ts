@@ -8,6 +8,9 @@ export const hello = createCommand({
     '494171126038134795', // Mythic team
   ],
   channels: ['bot-test'],
+  guilds: [
+    '369588869794103297', // IronBot
+  ],
   run: function (message: Message) {
     message.channel.send('hi 👋');
   },

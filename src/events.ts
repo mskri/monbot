@@ -42,8 +42,24 @@ export const onMessage = async ({
     return;
   }
 
-  const { requiredRoles } = command;
-  const { author, channel, member } = message;
+  const {
+    requiredRoles,
+    channels: allowedChannels,
+    guilds: allowedGuilds,
+  } = command;
+  const { author, channel, guild, member } = message;
+
+  // TODO: requires changes if dms are allowed to trigger commands
+  const triggeredInDisallowedGuild = allowedGuilds
+    ? !allowedGuilds.some((id) => id === guild?.id)
+    : false;
+
+  if (triggeredInDisallowedGuild) {
+    logger.debug(
+      `${author.tag} tried to run command '${command.name}' in a guild '${guild?.name}' which the command is not configured to be run in`
+    );
+    return;
+  }
 
   const triggeredInDisallowedChannel = allowedChannels
     ? !allowedChannels.some((name) => name === channel.name)

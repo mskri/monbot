@@ -7,6 +7,7 @@ export type Command = {
   requiredRoles?: Snowflake[];
   adminOnly?: boolean;
   channels?: string[];
+  guilds?: Snowflake[];
 };
 
 export const createCommand = (command: Command): Command => {
