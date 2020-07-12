@@ -2,6 +2,7 @@ import { createCommand, Message } from 'monbot';
 import { stripTrigger } from './commandUtils';
 
 export const emojiId = createCommand({
+  name: 'emoji-id',
   trigger: /^!emoji-id/,
   run: function (message: Message) {
     const customEmojiRegExp = /<:\w+:[0-9]+>/;

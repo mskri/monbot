@@ -3,6 +3,7 @@ import { stripTrigger } from './commandUtils';
 import { Role } from 'discord.js';
 
 export const roleId = createCommand({
+  name: 'role-id',
   trigger: /^!role-id/,
   run: function (message: Message) {
     const content = stripTrigger(this.trigger, message.content);

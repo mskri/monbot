@@ -39,6 +39,9 @@ export const onMessage = async ({
   );
 
   if (command) {
+    logger.debug(
+      `Command '${command.name}' was triggered by ${message.author.tag}`
+    );
     command.run(message);
     return;
   }
