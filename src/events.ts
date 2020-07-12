@@ -15,11 +15,15 @@ export const onError = (error: Error) => {
   console.error(`Unexpected error happened: ${error.message}`);
 };
 
-export const onMessage = async (
-  bot: BotConfig,
-  client: Client,
-  message: Message
-) => {
+export const onMessage = async ({
+  botConfig,
+  client,
+  message,
+}: {
+  botConfig: BotConfig;
+  client: Client;
+  message: Message;
+}) => {
   // Ignore bots
   if (message.author.bot) {
     return;
@@ -30,7 +34,7 @@ export const onMessage = async (
     return;
   }
 
-  const command = bot.commands.find((command) =>
+  const command = botConfig.commands.find((command) =>
     command.trigger.test(message.content)
   );
 
