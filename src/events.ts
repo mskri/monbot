@@ -37,19 +37,13 @@ export const onMessage = async ({
     return;
   }
 
-  const command = botConfig.commands.find((command) =>
-    command.trigger.test(message.content)
-  );
+  const command = botConfig.commands.find((command) => command.trigger.test(message.content));
 
   if (!command) {
     return;
   }
 
-  const {
-    requiredRoles,
-    channels: allowedChannels,
-    guilds: allowedGuilds,
-  } = command;
+  const { requiredRoles, channels: allowedChannels, guilds: allowedGuilds } = command;
   const { author, channel, guild, member } = message;
 
   // TODO: requires changes if dms are allowed to trigger commands
@@ -78,22 +72,16 @@ export const onMessage = async ({
   const authorIsNotAdmin = !botConfig.admins.includes(author.id);
 
   if (command.adminOnly && authorIsNotAdmin) {
-    logger.debug(
-      `${author.tag} tried to run admin only command '${command.name}'`
-    );
+    logger.debug(`${author.tag} tried to run admin only command '${command.name}'`);
     return;
   }
 
   const authorDoesNotHaveRequiredRole: boolean = requiredRoles
-    ? !requiredRoles.every(
-        (role) => member?.roles.cache.get(role) !== undefined
-      )
+    ? !requiredRoles.every((role) => member?.roles.cache.get(role) !== undefined)
     : false;
 
   if (authorDoesNotHaveRequiredRole) {
-    logger.debug(
-      `${author.tag} does not have required roles to run command '${command.name}'`
-    );
+    logger.debug(`${author.tag} does not have required roles to run command '${command.name}'`);
     return;
   }
 

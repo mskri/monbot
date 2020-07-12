@@ -12,9 +12,7 @@ export const Monbot = (authToken: string, botConfig: BotConfig) => {
 
   client.on('ready', () => onReady(client));
   client.on('error', (error: Error) => onError(error));
-  client.on('message', (message: Message) =>
-    onMessage({ botConfig, client, message })
-  );
+  client.on('message', (message: Message) => onMessage({ botConfig, client, message }));
 
   client.login(authToken);
 };
