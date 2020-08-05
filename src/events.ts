@@ -1,6 +1,7 @@
 import { Client, Message } from 'discord.js';
 import { BotConfig } from './bot';
 import { logger } from './logger';
+import { triggeredInDisallowedGuild, authorDoesNotHaveRequiredRole } from './eventUtils';
 
 export const onReady = async (client: Client) => {
   if (!client.user) {
@@ -53,34 +54,21 @@ export const onMessage = async ({
     return;
   }
 
-  // TODO: requires changes if dms are allowed to trigger commands
-  const triggeredInDisallowedGuild = allowedGuilds
-    ? !allowedGuilds.some((id) => id === guild?.id)
-    : false;
-
-  if (triggeredInDisallowedGuild) {
+  if (triggeredInDisallowedGuild(allowedGuilds, guild?.id)) {
     logger.debug(
       `${author.tag} tried to run command '${command.name}' in a guild '${guild?.name}' which the command is not configured to be run in`
     );
     return;
   }
 
-  const triggeredInDisallowedChannel = allowedChannels
-    ? !allowedChannels.some((name) => name === channel.name)
-    : false;
-
-  if (triggeredInDisallowedChannel) {
+  if (triggeredInDisallowedGuild(allowedChannels, channel.name)) {
     logger.debug(
       `${author.tag} tried to run command '${command.name}' in a channel '#${channel.name}' which the command is not configured to be run in`
     );
     return;
   }
 
-  const authorDoesNotHaveRequiredRole: boolean = requiredRoles
-    ? !requiredRoles.every((role) => member?.roles.cache.get(role) !== undefined)
-    : false;
-
-  if (authorDoesNotHaveRequiredRole) {
+  if (authorDoesNotHaveRequiredRole(requiredRoles, member?.roles.cache)) {
     logger.debug(`${author.tag} does not have required roles to run command '${command.name}'`);
     return;
   }
