@@ -1,9 +1,9 @@
 {
-  "loginMessage": "Logged in as ${bot.username} (${bot.id})",
-  "activeGuilds": "Active in following guilds: ${guilds}",
-  "errorAdminOnlyCommand": "${author.tag} tried to run admin only command '${command.name}'",
-  "errorDisallowedGuild": "${author.tag} tried to run command '${command.name}' in a guild '${guild.name}' which the command is not configured to be run in",
-  "errorDisallowedChannel": "${author.tag} tried to run command '${command.name}' in a channel '#${channel.name}' which the command is not configured to be run in",
-  "errorAuthorDoesNotHaveRequiredRole": "${author.tag} does not have required roles to run command '${command.name}'",
-  "commandTriggeredBy": "Command '${command.name}' was triggered by ${author.tag}"
+  "login.message": "Logged in as ${bot.username} (${bot.id})",
+  "login.activeGuilds": "Active in following guilds: ${guilds}",
+  "errors.adminOnlyCommand": "${author.tag} tried to run admin only command '${command.name}'",
+  "errors.disallowedGuildId": "${author.tag} tried to run command '${command.name}' in a guild '${guild.name}' which the command is not configured to be run in",
+  "errors.disallowedChannel": "${author.tag} tried to run command '${command.name}' in a channel '#${channel.name}' which the command is not configured to be run in",
+  "errors.authorMissingRequiredRole": "${author.tag} does not have required roles to run command '${command.name}'",
+  "commands.triggeredBy": "Command '${command.name}' was triggered by ${author.tag}"
 }

@@ -12,8 +12,8 @@ export const onReady = async (client: Client) => {
   const { username: botUsername, id: botId } = client.user;
   const guilds = client.guilds.cache.map((guild) => guild.name);
 
-  logger.info(t('loginMessage', botUsername, botId));
-  logger.info(t('activeGuilds', guilds.join(', ')));
+  logger.info(t('login.message', botUsername, botId));
+  logger.info(t('login.activeGuilds', guilds.join(', ')));
 };
 
 export const onError = (error: Error) => {
@@ -51,25 +51,25 @@ export const onMessage = async ({
   const authorIsNotAdmin = !botConfig.admins.includes(author.id);
 
   if (command.adminOnly && authorIsNotAdmin) {
-    logger.debug(t('errorAdminOnlyCommand', author.tag, command.name));
+    logger.debug(t('errors.adminOnlyCommand', author.tag, command.name));
     return;
   }
 
   if (triggeredInDisallowedGuild(allowedGuilds, guild?.id)) {
-    logger.debug(t('errorDisallowedGuild', author.tag, command.name, guild?.name ?? 'unknown'));
+    logger.debug(t('errors.disallowedGuildId', author.tag, command.name, guild?.name ?? 'unknown'));
     return;
   }
 
   if (triggeredInDisallowedGuild(allowedChannels, channel.name)) {
-    logger.debug(t('errorDisallowedChannel', author.tag, command.name, channel.name));
+    logger.debug(t('errors.disallowedChannel', author.tag, command.name, channel.name));
     return;
   }
 
   if (authorDoesNotHaveRequiredRole(requiredRoles, member?.roles.cache)) {
-    logger.debug(t('errorAuthorDoesNotHaveRequiredRole', author.tag, command.name));
+    logger.debug(t('errors.authorMissingRequiredRole', author.tag, command.name));
     return;
   }
 
-  logger.debug(t('commandTriggeredBy', command.name, author.tag));
+  logger.debug(t('commands.triggeredBy', command.name, author.tag));
   command.run(message);
 };
