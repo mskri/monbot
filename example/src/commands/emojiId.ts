@@ -4,10 +4,9 @@ import { stripTrigger } from './commandUtils';
 export const emojiId = createCommand({
   name: 'emoji-id',
   trigger: /^!emoji-id/,
-  run: function (message: Message) {
+  run: function (message: Message, { content }) {
     const customEmojiRegExp = /<:\w+:[0-9]+>/;
     const customEmojiIdRegExp = /(?<=:)[0-9]+(?=>)/;
-    const content = stripTrigger(this.trigger, message.content);
     const [customEmoji] = content.match(customEmojiRegExp) ?? [null];
 
     if (customEmoji) {

@@ -3,6 +3,7 @@ import { BotConfig } from './bot';
 import { logger } from './logger';
 import { triggeredInDisallowedGuild, authorDoesNotHaveRequiredRole } from './eventUtils';
 import { t } from './i18n';
+import { replaceTrigger } from './commandUtils';
 
 export const onReady = async (client: Client) => {
   if (!client.user) {
@@ -71,5 +72,6 @@ export const onMessage = async ({
   }
 
   logger.debug(t('commands.triggeredBy', command.name, author.tag));
-  command.run(message);
+  const content = replaceTrigger(command.trigger, message.content);
+  command.run(message, { content });
 };

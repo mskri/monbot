@@ -3,7 +3,7 @@ import { Message, Snowflake } from 'discord.js';
 export type Command = {
   name: string;
   trigger: RegExp;
-  run: (message: Message) => void;
+  run: (message: Message, { content }: { content: string }) => void;
   requiredRoles?: Snowflake[];
   adminOnly?: boolean;
   channels?: string[];
