@@ -8,16 +8,13 @@ export const emojiId = createCommand({
     const customEmojiIdRegExp = /(?<=:)[0-9]+(?=>)/;
     const [customEmoji] = content.match(customEmojiRegExp) ?? [null];
 
-    if (customEmoji) {
-      const [customEmojiId] = customEmoji.match(customEmojiIdRegExp) ?? [''];
-      const emoji = guild?.emojis.resolve(customEmojiId);
-      channel.send(
-        `ID for custom emoji **${emoji?.name}** is \`${emoji?.id}\``
-      );
-
+    if (!customEmoji) {
+      channel.send('No matching emoji found');
       return;
     }
 
-    channel.send('No matching emoji found');
+    const [customEmojiId] = customEmoji.match(customEmojiIdRegExp) ?? [''];
+    const emoji = guild?.emojis.resolve(customEmojiId);
+    channel.send(`ID for custom emoji **${emoji?.name}** is \`${emoji?.id}\``);
   },
 });
