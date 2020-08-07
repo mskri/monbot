@@ -50,7 +50,7 @@ export const onMessage = async ({
   const { requiredRoles, channels: allowedChannels, guilds: allowedGuilds } = command;
   const { author, channel, guild, member } = message;
 
-  const authorIsNotAdmin = !botConfig.admins.includes(author.id);
+  const authorIsNotAdmin = !botConfig.admins?.includes(author.id);
 
   if (command.adminOnly && authorIsNotAdmin) {
     logger.debug(t('errors.adminOnlyCommand', author.tag, command.name));
