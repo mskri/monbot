@@ -14,7 +14,8 @@
     "watch": "rollup -cw",
     "test": "jest",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
-    "format": "prettier --ignore-path .gitignore --write './**/*.{ts,js,json,css}'"
+    "format": "prettier --ignore-path .gitignore --write './**/*.{ts,js,json,css}'",
+    "prepare": "install-peers"
   },
   "keywords": [],
   "author": {
@@ -39,6 +40,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.2.5",
+    "install-peers-cli": "^2.2.0",
     "jest": "^26.2.2",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
