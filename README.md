@@ -2,6 +2,8 @@
 
 A library with simple API for creating your own discord bots.
 
+> :warning: Not recommended for use yet. Under development and api is still shaping up.
+
 ## Installation
 
 Install using `npm install --save monbot` or `yarn add monbot`.
