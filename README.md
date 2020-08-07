@@ -30,6 +30,8 @@ Monbot(BOT_AUTH_TOKEN, {
 });
 ```
 
+You can find expanded example from [`example/`](./example/)
+
 ## API documentation
 
 ### `Monbot`
