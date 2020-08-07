@@ -3,10 +3,12 @@ import { createCommand } from 'monbot';
 export const emojiId = createCommand({
   name: 'emoji-id',
   trigger: /^!emoji-id/,
-  run: function ({ channel, guild }, { content }) {
+  run: function ({ channel, content, guild }, { removeTrigger }) {
+    const emoji = removeTrigger(content);
+
     const customEmojiRegExp = /<:\w+:[0-9]+>/;
     const customEmojiIdRegExp = /(?<=:)[0-9]+(?=>)/;
-    const [customEmoji] = content.match(customEmojiRegExp) ?? [null];
+    const [customEmoji] = emoji.match(customEmojiRegExp) ?? [null];
 
     if (!customEmoji) {
       channel.send('No matching emoji found');
@@ -14,7 +16,9 @@ export const emojiId = createCommand({
     }
 
     const [customEmojiId] = customEmoji.match(customEmojiIdRegExp) ?? [''];
-    const emoji = guild?.emojis.resolve(customEmojiId);
-    channel.send(`ID for custom emoji **${emoji?.name}** is \`${emoji?.id}\``);
+    const matchingEmoji = guild?.emojis.resolve(customEmojiId);
+    channel.send(
+      `ID for custom emoji **${matchingEmoji?.name}** is \`${matchingEmoji?.id}\``
+    );
   },
 });

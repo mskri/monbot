@@ -3,7 +3,8 @@ import { createCommand } from 'monbot';
 export const channelId = createCommand({
   name: 'channel-id',
   trigger: /^!channel-id/,
-  run: function ({ channel, guild }, { content: channelName }) {
+  run: function ({ channel, content, guild }, { removeTrigger }) {
+    const channelName = removeTrigger(content);
     const channelLinkRegExp = /^<#[0-9]+>/;
 
     if (channelName.length < 1) {

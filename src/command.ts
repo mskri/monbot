@@ -2,7 +2,7 @@ import { Message, Snowflake } from 'discord.js';
 import type { ParsedArgs, ParseArgsOptions } from './parseArgs';
 
 type CommandExtraParams = {
-  content: string;
+  removeTrigger: (content: string) => string;
   parseArgs: <T extends Record<string, string | number | boolean | Date>>(
     input: string,
     opts?: ParseArgsOptions
@@ -12,7 +12,7 @@ type CommandExtraParams = {
 export type Command = {
   name: string;
   trigger: RegExp;
-  run: (message: Message, { content, parseArgs }: CommandExtraParams) => void;
+  run: (message: Message, { removeTrigger, parseArgs }: CommandExtraParams) => void;
   requiredRoles?: Snowflake[];
   adminOnly?: boolean;
   channels?: string[];

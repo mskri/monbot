@@ -3,8 +3,10 @@ import { createCommand } from 'monbot';
 export const roleId = createCommand({
   name: 'role-id',
   trigger: /^!role-id/,
-  run: function ({ channel, guild }, { content }) {
-    if (content.length < 1) {
+  run: function ({ channel, content, guild }, { removeTrigger }) {
+    const role = removeTrigger(content);
+
+    if (!role) {
       channel.send(`You need to specify which role to look for`);
       return;
     }
