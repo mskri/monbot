@@ -3,8 +3,8 @@ import { onReady, onError, onMessage } from './events';
 import { Command } from './command';
 
 export type BotConfig = {
-  admins: Snowflake[];
   commands: Command[];
+  admins?: Snowflake[];
 };
 
 export const Monbot = (authToken: string, botConfig: BotConfig) => {
