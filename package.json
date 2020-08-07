@@ -54,8 +54,10 @@
   "dependencies": {
     "pino": "^6.5.0",
     "pino-pretty": "^4.1.0",
-    "discord.js": "^12.2.0",
     "rollup-plugin-terser": "^6.1.0",
     "rollup-plugin-typescript2": "^0.27.1"
+  },
+  "peerDependencies": {
+    "discord.js": "12.x"
   }
 }
