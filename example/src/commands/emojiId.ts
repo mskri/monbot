@@ -11,7 +11,9 @@ export const emojiId = createCommand({
     if (customEmoji) {
       const [customEmojiId] = customEmoji.match(customEmojiIdRegExp) ?? [''];
       const emoji = guild?.emojis.resolve(customEmojiId);
-      channel.send(`ID for custom emoji "${emoji?.name}" is \`${emoji?.id}\``);
+      channel.send(
+        `ID for custom emoji **${emoji?.name}** is \`${emoji?.id}\``
+      );
 
       return;
     }

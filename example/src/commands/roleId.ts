@@ -13,6 +13,6 @@ export const roleId = createCommand({
       (role) => role.name.toLowerCase() === content.toLowerCase()
     );
 
-    channel.send(`ID for role "${content}" is \`${role?.id}\``);
+    channel.send(`ID for role **${content}** is \`${role?.id}\``);
   },
 });
