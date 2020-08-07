@@ -9,10 +9,16 @@ export const roleId = createCommand({
       return;
     }
 
-    const role = guild?.roles.cache.find(
-      (role) => role.name.toLowerCase() === content.toLowerCase()
-    );
+    const roleId =
+      guild?.roles.cache.find((role) => {
+        return role.name.toLowerCase() === content.toLowerCase();
+      })?.id ?? null;
 
-    channel.send(`ID for role **${content}** is \`${role?.id}\``);
+    if (!roleId) {
+      channel.send(`Unkown role **${content}**`);
+      return;
+    }
+
+    channel.send(`ID for role **${content}** is \`${roleId}\``);
   },
 });
