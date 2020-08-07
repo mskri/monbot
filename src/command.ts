@@ -1,9 +1,22 @@
 import { Message, Snowflake } from 'discord.js';
+import type { ParsedArgs, ParseArgsOptions } from './parseArgs';
 
 export type Command = {
   name: string;
   trigger: RegExp;
-  run: (message: Message, { content }: { content: string }) => void;
+  run: (
+    message: Message,
+    {
+      content,
+      parseArgs,
+    }: {
+      content: string;
+      parseArgs: <T extends Record<string, string | number | boolean | Date>>(
+        input: string,
+        opts?: ParseArgsOptions
+      ) => ParsedArgs<T>;
+    }
+  ) => void;
   requiredRoles?: Snowflake[];
   adminOnly?: boolean;
   channels?: string[];
