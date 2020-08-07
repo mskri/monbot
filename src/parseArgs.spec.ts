@@ -17,7 +17,7 @@ describe('parseArgs', () => {
           '--fourth',
           '2020-02-01 12:34:55+02:00',
           '--fifth',
-          123,
+          '123',
         ],
         first: true,
         second: 'is a string',
