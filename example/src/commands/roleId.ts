@@ -2,7 +2,7 @@ import { createCommand } from 'monbot';
 
 export const roleId = createCommand({
   name: 'role-id',
-  trigger: /^!role-id/,
+  trigger: /^!role-id\s/,
   run: function ({ channel, content, guild }, { removeTrigger }) {
     const role = removeTrigger(content);
 
