@@ -1,4 +1,4 @@
-import { createCommand, Message } from 'monbot';
+import { createCommand } from 'monbot';
 
 export const hello = createCommand({
   name: 'hello',
@@ -11,7 +11,7 @@ export const hello = createCommand({
   guilds: [
     '369588869794103297', // IronBot
   ],
-  run: function (message: Message) {
-    message.channel.send('hi 👋');
+  run: function ({ channel }) {
+    channel.send('hi 👋');
   },
 });

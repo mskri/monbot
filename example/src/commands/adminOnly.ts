@@ -1,4 +1,4 @@
-import { createCommand, Message } from 'monbot';
+import { createCommand } from 'monbot';
 
 export const adminOnly = createCommand({
   name: 'admin-only',
@@ -7,7 +7,7 @@ export const adminOnly = createCommand({
     '380065303440392203', // Officers
   ],
   adminOnly: true,
-  run: function (message: Message) {
-    message.channel.send('👋 admin only');
+  run: function ({ channel }) {
+    channel.send('👋 admin only');
   },
 });
