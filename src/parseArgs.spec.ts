@@ -44,6 +44,20 @@ describe('parseArgs', () => {
       hasMissingArgs: false,
       missingArgs: [],
     });
+
+    expect(
+      parseArgs('--title "This is title" --description "Overrides default"', {
+        defaults: { description: 'This is default description' },
+      })
+    ).toEqual({
+      args: {
+        _: ['--title', 'This is title', '--description', 'Overrides default'],
+        title: 'This is title',
+        description: 'Overrides default',
+      },
+      hasMissingArgs: false,
+      missingArgs: [],
+    });
   });
 
   it('parses string into object and returns missing required args', () => {

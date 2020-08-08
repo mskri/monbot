@@ -9,7 +9,7 @@ String.prototype.indexOfRegex = function (regex: RegExp) {
   return match ? this.indexOf(match[0]) : -1;
 };
 
-const findMissingKeys = (args: Record<string, unknown>, requiredKeys: string[]): string[] => {
+const findMissingArgs = (args: Record<string, unknown>, requiredKeys: string[]): string[] => {
   const missingKeys: string[] = [];
 
   requiredKeys.forEach((key: string) => {
@@ -81,12 +81,12 @@ export const parseArgs = <T extends Record<string, string | number | boolean | D
 ): ParsedArgs<T> => {
   const { defaults, requiredArgs } = opts;
   const argKeyRegExp = /^--\w+/;
-  const args = processargvify(input.trim());
+  const inputArgs = processargvify(input.trim());
   const props: Record<string, string | boolean | number | Date> = {};
 
-  for (let i = 0; i < args.length; i++) {
-    const current = args[i];
-    const next = args[i + 1];
+  for (let i = 0; i < inputArgs.length; i++) {
+    const current = inputArgs[i];
+    const next = inputArgs[i + 1];
     const argName = removeStartHyphens(current);
 
     if ((next && next.indexOfRegex(argKeyRegExp) >= 0) || !next) {
@@ -100,11 +100,11 @@ export const parseArgs = <T extends Record<string, string | number | boolean | D
     }
   }
 
-  const rArgs = Object.assign({}, { _: args }, props);
-  const missingArgs = findMissingKeys(rArgs, requiredArgs ?? []);
+  const args = Object.assign({ _: inputArgs }, defaults ?? {}, props) as T;
+  const missingArgs = findMissingArgs(args, requiredArgs ?? []);
 
   return {
-    args: Object.assign(rArgs, defaults ?? {}) as T,
+    args: args,
     hasMissingArgs: missingArgs.length > 0,
     missingArgs,
   };
