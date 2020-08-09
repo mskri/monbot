@@ -32,6 +32,12 @@ Monbot(BOT_AUTH_TOKEN, {
 
 You can find expanded example from [`example/`](./example/)
 
+## Bot permissions in discord
+
+For bot to work with adding or removing reactions to messages that are not in its cache, e.g. messages send before bot became online, it requires `Read Message History` permission.
+
+Without the permission bot cannot fetch non-cached messages and the reactions will not trigger the action.
+
 ## API documentation
 
 ### `Monbot`
@@ -39,5 +45,9 @@ You can find expanded example from [`example/`](./example/)
 TBA
 
 ### `createCommand`
+
+TBA
+
+### `createReaction`
 
 TBA

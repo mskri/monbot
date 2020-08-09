@@ -5,5 +5,7 @@
   "errors.disallowedGuildId": "${author.tag} tried to run command '${command.name}' in a guild '${guild.name}' which the command is not configured to be run in",
   "errors.disallowedChannel": "${author.tag} tried to run command '${command.name}' in a channel '#${channel.name}' which the command is not configured to be run in",
   "errors.authorMissingRequiredRole": "${author.tag} does not have required roles to run command '${command.name}'",
-  "commands.triggeredBy": "Command '${command.name}' was triggered by ${author.tag}"
+  "commands.triggeredBy": "Command '${command.name}' was triggered by ${author.tag}",
+  "reactions.onAddTriggeredBy": "Reaction '${reaction.name}' onAdd was triggered by ${author.tag} (messageId: ${message.id})",
+  "reactions.onRemoveTriggeredBy": "Reaction '${reaction.name}' onRemove was triggered by ${author.tag} (messageId: ${message.id})"
 }
