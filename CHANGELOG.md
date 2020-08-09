@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.8
+
+- Add `createReaction` API for triggering commands on adding or removing reactions
+- Make passing commands to Monbot configuration optional
+- Remove required roles, channels and guild from examples
+
 ## v0.1.7
 
 - Fix parseArgs using defaults value instead if given one
