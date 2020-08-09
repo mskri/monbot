@@ -58,7 +58,7 @@ export const onMessage = async ({
   }
 
   if (triggeredInDisallowedGuild(allowedGuilds, guild?.id)) {
-    logger.debug(t('errors.disallowedGuildId', author.tag, command.name, guild?.name ?? 'unknown'));
+    logger.debug(t('errors.disallowedGuildId', author.tag, command.name, guild?.name));
     return;
   }
 
@@ -73,7 +73,6 @@ export const onMessage = async ({
   }
 
   logger.debug(t('commands.triggeredBy', command.name, author.tag));
-
   command.run(message, {
     removeTrigger: (content: string) => removeTrigger(command.trigger, content),
     parseArgs,

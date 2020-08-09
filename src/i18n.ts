@@ -1,6 +1,6 @@
 import en from './locales/en.json';
 
-export const t = (key: string, ...parameters: (string | number)[]): string => {
+export const t = (key: string, ...parameters: (string | number | null | undefined)[]): string => {
   const locale = en as Record<string, string>;
   const translation = locale[key] as string;
 
