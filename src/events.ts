@@ -20,7 +20,7 @@ export const onReady = async (client: Client) => {
 };
 
 export const onError = (error: Error) => {
-  console.error(`Unexpected error happened: ${error.message}`);
+  logger.error(t('error.unexpected', error.message));
 };
 
 export const onMessage = async ({
