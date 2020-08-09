@@ -3,7 +3,7 @@ import { onReady, onError, onMessage } from './events';
 import { Command } from './command';
 
 export type BotConfig = {
-  commands: Command[];
+  commands?: Command[];
   admins?: Snowflake[];
 };
 

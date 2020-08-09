@@ -41,7 +41,7 @@ export const onMessage = async ({
     return;
   }
 
-  const command = botConfig.commands.find((command) => command.trigger.test(message.content));
+  const command = botConfig.commands?.find((command) => command.trigger.test(message.content));
 
   if (!command) {
     return;
