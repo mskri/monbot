@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.9
+
+- Move all rollup plugins to devDependencies to remove warning on installation
+
 ## v0.1.8
 
 - Add `createReaction` API for triggering commands on adding or removing reactions
