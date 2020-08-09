@@ -3,7 +3,7 @@ import { createCommand } from 'monbot';
 export const emojiId = createCommand({
   name: 'emoji-id',
   trigger: /^!emoji-id\s/,
-  run: function ({ channel, content, guild }, { removeTrigger }) {
+  run: ({ channel, content, guild }, { removeTrigger }) => {
     const emoji = removeTrigger(content);
 
     const customEmojiRegExp = /<:\w+:[0-9]+>/;
