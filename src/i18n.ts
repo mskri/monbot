@@ -4,6 +4,10 @@ export const t = (key: string, ...parameters: (string | number | null | undefine
   const locale = en as Record<string, string>;
   const translation = locale[key] as string;
 
+  if (!translation) {
+    throw new ReferenceError(`Could not find translation for '${key}'`);
+  }
+
   if (parameters.length > 0) {
     let index = 0;
 
