@@ -78,7 +78,7 @@ export const onMessage = async ({
   });
 };
 
-export const onMessageReactionAdd = async ({
+export const onMessageReaction = async ({
   botConfig,
   reaction,
   user,
