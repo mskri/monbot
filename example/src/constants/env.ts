@@ -1,4 +1,11 @@
-export const BOT_AUTH_TOKEN: string = process.env.BOT_AUTH_TOKEN ?? '';
+import dotenv from 'dotenv';
 
-// TODO: Should the admins be defined by their tag, e.g. user#1234, instead of 18 numbers long ID?
-export const ADMINS: string[] = process.env.ADMINS?.split(',') ?? [];
+const { error, parsed } = dotenv.config();
+
+if (error) {
+  throw error;
+}
+
+export const BOT_AUTH_TOKEN: string = parsed?.BOT_AUTH_TOKEN ?? '';
+
+export const ADMINS: string[] = parsed?.ADMINS?.split(',') ?? [];
