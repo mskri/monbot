@@ -1,4 +1,4 @@
-import { Client, Message, MessageReaction, User, PartialUser, Collection, Role } from 'discord.js';
+import { Client, Message, MessageReaction, User, PartialUser } from 'discord.js';
 import { BotConfig } from './bot';
 import { logger } from './logger';
 import { triggeredInDisallowedGuild, authorDoesNotHaveRequiredRole } from './eventUtils';
@@ -25,11 +25,9 @@ export const onError = (error: Error) => {
 
 export const onMessage = async ({
   botConfig,
-  client,
   message,
 }: {
   botConfig: BotConfig;
-  client: Client;
   message: Message;
 }) => {
   // Ignore bots

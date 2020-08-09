@@ -16,7 +16,7 @@ export const Monbot = (authToken: string, botConfig: BotConfig) => {
 
   client.on('ready', () => onReady(client));
   client.on('error', (error: Error) => onError(error));
-  client.on('message', (message: Message) => onMessage({ botConfig, client, message }));
+  client.on('message', (message: Message) => onMessage({ botConfig, message }));
   client.on('messageReactionAdd', (reaction: MessageReaction, user: User | PartialUser) =>
     onMessageReactionAdd({ botConfig, reaction, user, type: 'add' })
   );
