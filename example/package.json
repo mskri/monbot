@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "start": "node dist/index.js",
+    "start": "NODE_ENV=development NODE_PATH=src/ ts-node src/index.ts",
+    "build": "tsc",
+    "production": "NODE_ENV=production NODE_PATH=dist/ node dist/index.js",
     "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "keywords": [],
