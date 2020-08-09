@@ -1,7 +1,7 @@
 {
   "name": "monbot",
   "version": "0.1.8",
-  "description": "",
+  "description": "A library with simple API for creating your own discord bots.",
   "main": "./lib/index.js",
   "module": "./lib/esm/index.js",
   "files": [
