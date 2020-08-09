@@ -43,6 +43,7 @@
     "husky": "^4.2.5",
     "install-peers-cli": "^2.2.0",
     "jest": "^26.2.2",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
     "rollup": "^2.18.2",
@@ -51,8 +52,15 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
     }
+  },
+  "lint-staged": {
+    "./src/*.{js,jsx,ts,tsx}": [
+      "npm run lint",
+      "pretty-quick --staged"
+    ]
   },
   "dependencies": {
     "pino": "^6.5.0",
