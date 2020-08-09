@@ -24,6 +24,13 @@
     "email": "sakari@mursu.dev",
     "url": "https://mursu.dev"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mskri/monbot/"
+  },
+  "bugs": {
+    "url": "https://github.com/mskri/monbot/issues"
+  },
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.11.1",
