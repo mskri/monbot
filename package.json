@@ -15,7 +15,7 @@
     "test": "jest",
     "lint": "eslint '{src,example}/**/*.{js,ts}'",
     "lint:fix": "eslint '{src,example}/**/*.{js,ts}' --quiet --fix",
-    "format": "prettier --ignore-path .gitignore --write './**/*.{ts,js,json,css}'",
+    "format": "prettier --ignore-path .gitignore --write './**/*.{ts,js,json}'",
     "prepare": "install-peers -f"
   },
   "keywords": [
