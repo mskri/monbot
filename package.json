@@ -18,12 +18,11 @@
     "format": "prettier --ignore-path .gitignore --write './**/*.{ts,js,json,css}'",
     "prepare": "install-peers -f"
   },
-  "keywords": [],
-  "author": {
-    "name": "Sakari Mursu",
-    "email": "sakari@mursu.dev",
-    "url": "https://mursu.dev"
-  },
+  "keywords": [
+    "discord-bot",
+    "discordjs"
+  ],
+  "author": "Sakari Mursu <sakari@mursu.dev> (https://mursu.dev)",
   "repository": {
     "type": "git",
     "url": "https://github.com/mskri/monbot/"

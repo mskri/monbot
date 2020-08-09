@@ -8,11 +8,7 @@
     "build": "tsc",
     "production": "NODE_ENV=production NODE_PATH=dist/ node -r dotenv/config dist/index.js"
   },
-  "author": {
-    "name": "Sakari Mursu",
-    "email": "sakari@mursu.dev",
-    "url": "https://mursu.dev"
-  },
+  "author": "Sakari Mursu <sakari@mursu.dev> (https://mursu.dev)",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^14.0.14",
