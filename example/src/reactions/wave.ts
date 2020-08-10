@@ -3,7 +3,7 @@ import { createReaction } from 'monbot';
 export const wave = createReaction({
   name: 'wave',
   trigger: ['👋', '👍'],
-  onAdd: function ({ emoji, message: { channel } }) {
+  onAdd: ({ emoji, message: { channel } }) => {
     // if (emoji.name === '👍') {
     // if (emoji.name === 'customemoji') {
     if (emoji.identifier === '%F0%9F%91%8D') {
