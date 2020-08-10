@@ -46,8 +46,79 @@ TBA
 
 ### `createCommand`
 
-TBA
+Creates a command configuration.
+
+```ts
+type Command = {
+  name: string;
+  trigger: RegExp;
+  run: (message: Message, { removeTrigger, parseArgs }: CommandExtraParams) => void;
+  requiredRoles?: string[];
+  adminOnly?: boolean;
+  channels?: string[];
+  guilds?: string[];
+};
+```
+
+| Field           | Description                                                                                                                          |
+| :-------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
+| `name`          | Name of the command. Displayed in logs                                                                                               |
+| `trigger`       | Regular expression that triggers the command                                                                                         |
+| `run`           | Function to run when command is triggered                                                                                            |
+| `requiredRoles` | [Role IDs](https://discord.js.org/#/docs/main/stable/class/Role?scrollTo=id) user is required to have to run the command             |
+| `adminOnly`     | Is user required to be listed as admin in `BotConfig`                                                                                |
+| `channels`      | [Channel IDs](https://discord.js.org/#/docs/main/stable/class/TextChannel?scrollTo=id) for channels the command is allowed be run in |
+| `guilds`        | [Guild IDs](https://discord.js.org/#/docs/main/stable/class/Guild?scrollTo=id) for servers the command is allowed be run in          |
+
+#### Example
+
+```ts
+export const hello = createCommand({
+  name: 'hello',
+  trigger: /(^|\s+)hello(\s+|$)/i,
+  run: ({ channel }) => {
+    channel.send('hi 👋');
+  },
+});
+```
 
 ### `createReaction`
 
-TBA
+Creates a reaction configuration.
+
+```
+type Reaction = {
+  name: string;
+  trigger: string | string[];
+  onAdd?: (reaction: MessageReaction) => void;
+  onRemove?: (reaction: MessageReaction) => void;
+  requiredRoles?: string[];
+  channels?: string[];
+  guilds?: string[];
+};
+```
+
+| Field           | Description                                                                                                                                                         |
+| :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `name`          | Name of the command. Displayed in logs                                                                                                                              |
+| `trigger`       | Emoji name that triggers reaction. Discord's default emoji names are like 😄or 👍. Custom emojis name's are the same as their alias in server settings, e.g. `woah` |
+| `onAdd`         | Function to run when reaction is added                                                                                                                              |
+| `onRemove`      | Function to run when reaction is removed                                                                                                                            |
+| `requiredRoles` | [Role IDs](https://discord.js.org/#/docs/main/stable/class/Role?scrollTo=id) user is required to have to run the command                                            |
+| `channels`      | [Channel IDs](https://discord.js.org/#/docs/main/stable/class/TextChannel?scrollTo=id) for channels the command is allowed be run in                                |
+| `guilds`        | [Guild IDs](https://discord.js.org/#/docs/main/stable/class/Guild?scrollTo=id) for servers the command is allowed be run in                                         |
+
+#### Example
+
+```ts
+export const wave = createReaction({
+  name: 'wave',
+  trigger: ['👋'],
+  onAdd: ({ message: { channel } }) => {
+    channel.send('You added :wave:');
+  },
+  onRemove: function ({ message: { channel } }) {
+    channel.send('You removed :wave:');
+  },
+});
+```
