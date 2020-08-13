@@ -1,10 +1,10 @@
-import { Snowflake, MessageReaction } from 'discord.js';
+import { Snowflake, MessageReaction, User } from 'discord.js';
 
 export type Reaction = {
   name: string;
-  trigger: string | string[]; // e.g. customemojiname or 😄
-  onAdd?: (reaction: MessageReaction) => void;
-  onRemove?: (reaction: MessageReaction) => void;
+  trigger: string | string[];
+  onAdd?: (reaction: MessageReaction, user: User) => void;
+  onRemove?: (reaction: MessageReaction, user: User) => void;
   requiredRoles?: Snowflake[];
   channels?: Snowflake[];
   guilds?: Snowflake[];

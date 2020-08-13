@@ -108,6 +108,8 @@ export const onMessageReaction = async ({
     }
   }
 
+  const reactionAuthor = user as User;
+
   const reactionCommand = botConfig.reactions?.find((reactionCommand: Reaction) => {
     if (Array.isArray(reactionCommand.trigger)) {
       return reactionCommand.trigger.includes(reaction.emoji.name);
@@ -123,29 +125,38 @@ export const onMessageReaction = async ({
   const { channel, guild, member } = reaction.message;
 
   if (triggeredInDisallowedGuild(allowedGuilds, guild?.id)) {
-    logger.debug(t('errors.disallowedGuildId', user.tag, reactionCommand.name, guild?.name));
+    logger.debug(
+      t('errors.disallowedGuildId', reactionAuthor.tag, reactionCommand.name, guild?.name)
+    );
     return;
   }
 
   if (triggeredInDisallowedGuild(allowedChannels, channel.name)) {
-    logger.debug(t('errors.disallowedChannel', user.tag, reactionCommand.name, channel.name));
+    logger.debug(
+      t('errors.disallowedChannel', reactionAuthor.tag, reactionCommand.name, channel.name)
+    );
     return;
   }
 
   if (authorDoesNotHaveRequiredRole(requiredRoles, member?.roles.cache)) {
-    logger.debug(t('errors.authorMissingRequiredRole', user.tag, reactionCommand.name));
+    logger.debug(t('errors.authorMissingRequiredRole', reactionAuthor.tag, reactionCommand.name));
     return;
   }
 
   if (type === 'add') {
     logger.debug(
-      t('reactions.onAddTriggeredBy', reactionCommand.name, user.tag, reaction.message.id)
+      t('reactions.onAddTriggeredBy', reactionCommand.name, reactionAuthor.tag, reaction.message.id)
     );
-    reactionCommand.onAdd?.(reaction);
+    reactionCommand.onAdd?.(reaction, reactionAuthor);
   } else {
     logger.debug(
-      t('reactions.onRemoveTriggeredBy', reactionCommand.name, user.tag, reaction.message.id)
+      t(
+        'reactions.onRemoveTriggeredBy',
+        reactionCommand.name,
+        reactionAuthor.tag,
+        reaction.message.id
+      )
     );
-    reactionCommand.onRemove?.(reaction);
+    reactionCommand.onRemove?.(reaction, reactionAuthor);
   }
 };

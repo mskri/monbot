@@ -3,20 +3,20 @@ import { createReaction } from 'monbot';
 export const wave = createReaction({
   name: 'wave',
   trigger: ['👋', '👍'],
-  onAdd: ({ emoji, message: { channel } }) => {
+  onAdd: ({ emoji, message: { channel } }, user) => {
     // if (emoji.name === '👍') {
     // if (emoji.name === 'customemoji') {
     if (emoji.identifier === '%F0%9F%91%8D') {
-      channel.send('You added :thumbsup:');
+      channel.send(`${user.username} added :thumbsup:`);
       return;
     }
     channel.send('You added :wave:');
   },
-  onRemove: function ({ emoji, message: { channel } }) {
+  onRemove: function ({ emoji, message: { channel } }, user) {
     // if (emoji.name === '👍') {
     // if (emoji.name === 'customemoji') {
     if (emoji.identifier === '%F0%9F%91%8D') {
-      channel.send('You removed :thumbsup:');
+      channel.send(`${user.username} removed :thumbsup:`);
       return;
     }
     channel.send('You removed :wave:');
