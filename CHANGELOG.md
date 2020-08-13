@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.10
+
+- Add user to reactions onAdd and onRemove
+
 ## v0.1.9
 
 - Move all rollup plugins to devDependencies to remove warning on installation
