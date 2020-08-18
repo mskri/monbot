@@ -108,6 +108,11 @@ export const onMessageReaction = async ({
     }
   }
 
+  // Ignore add/remove triggered by bot
+  if (reaction.message.author.bot) {
+    return;
+  }
+
   const reactionAuthor = user as User;
 
   const reactionCommand = botConfig.reactions?.find((reactionCommand: Reaction) => {
