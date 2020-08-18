@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.11
+
+- Ignore reaction add/remove events triggered by bots
+
 ## v0.1.10
 
 - Add user to reactions onAdd and onRemove
