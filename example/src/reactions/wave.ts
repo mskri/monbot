@@ -12,7 +12,7 @@ export const wave = createReaction({
     }
     channel.send('You added :wave:');
   },
-  onRemove: function ({ emoji, message: { channel } }, user) {
+  onRemove: ({ emoji, message: { channel } }, user) => {
     // if (emoji.name === '👍') {
     // if (emoji.name === 'customemoji') {
     if (emoji.identifier === '%F0%9F%91%8D') {
