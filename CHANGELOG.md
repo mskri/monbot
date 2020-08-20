@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.12
+
+- Revert "Ignore reaction add/remove events triggered by bots". The change made reactions on messages posted by bots not trigger `onAdd` or `onRemove`
+
 ## v0.1.11
 
 - Ignore reaction add/remove events triggered by bots
