@@ -18,10 +18,10 @@ export const Monbot = (authToken: string, botConfig: BotConfig) => {
   client.on('error', (error: Error) => onError(error));
   client.on('message', (message: Message) => onMessage({ botConfig, message }));
   client.on('messageReactionAdd', (reaction: MessageReaction, user: User | PartialUser) =>
-    onMessageReaction({ botConfig, reaction, user, type: 'add' })
+    onMessageReaction({ botConfig, client, reaction, user, type: 'add' })
   );
   client.on('messageReactionRemove', (reaction: MessageReaction, user: User | PartialUser) =>
-    onMessageReaction({ botConfig, reaction, user, type: 'remove' })
+    onMessageReaction({ botConfig, client, reaction, user, type: 'remove' })
   );
 
   client.login(authToken);

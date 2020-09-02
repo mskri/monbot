@@ -80,11 +80,13 @@ export const onMessage = async ({
 
 export const onMessageReaction = async ({
   botConfig,
+  client,
   reaction,
   user,
   type,
 }: {
   botConfig: BotConfig;
+  client: Client;
   reaction: MessageReaction;
   user: User | PartialUser;
   type: 'add' | 'remove';
@@ -147,7 +149,7 @@ export const onMessageReaction = async ({
     logger.debug(
       t('reactions.onAddTriggeredBy', reactionCommand.name, reactionAuthor.tag, reaction.message.id)
     );
-    reactionCommand.onAdd?.(reaction, reactionAuthor);
+    reactionCommand.onAdd?.(reaction, { user: reactionAuthor, client });
   } else {
     logger.debug(
       t(
@@ -157,6 +159,6 @@ export const onMessageReaction = async ({
         reaction.message.id
       )
     );
-    reactionCommand.onRemove?.(reaction, reactionAuthor);
+    reactionCommand.onRemove?.(reaction, { user: reactionAuthor, client });
   }
 };
